@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  FOR and WHILE loops.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Harry Chen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -116,6 +116,24 @@ def run_test_practice_problem3():
         big_list.append(k)
     tests.append(st.SimpleTestCase(practice_problem3,
                                    [888, 1000,
+                                    - math.sqrt(2) - 0.00000000001],
+                                   big_list))
+
+    # 15th test:
+    big_list = []
+    for k in range(3, 18):
+        big_list.append(k)
+    tests.append(st.SimpleTestCase(practice_problem3,
+                                   [3, 15,
+                                    - math.sqrt(2) - 0.00000000001],
+                                   big_list))
+
+    # 16th test:
+    big_list = []
+    for k in range(0, 180):
+        big_list.append(k)
+    tests.append(st.SimpleTestCase(practice_problem3,
+                                   [0, 180,
                                     - math.sqrt(2) - 0.00000000001],
                                    big_list))
 
@@ -207,8 +225,30 @@ def practice_problem3(start, n, threshold):
       :type n:     int
       :type threshold: float
     """
+    count=0
+    index =0
+    list = []
+    if n ==0:
+        return list
+    elif threshold>math.sqrt(2):
+        for k in range(n):
+            list+=[start+n]
+        return list
+    else:
+        while count < n:
+            if math.sin(start+index)+math.cos(start+index)>threshold:
+                    list +=[start+index]
+                    count+=1
+                    index +=1
+            else:
+                index +=1
+
+        return list
+
+
+
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
