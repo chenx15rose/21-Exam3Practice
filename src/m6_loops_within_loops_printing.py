@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in PRINTING-TO-CONSOLE problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Harry Chen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -57,8 +57,8 @@ def run_test_shape():
 def shape(r):
     """
     Prints a shape with r rows that looks like this example where r=7:
-    +++++++!7654321
-     ++++++!654321-
+1111+++++++!7654321 19
+11111++++++!654321-
       +++++!54321--
        ++++!4321---
         +++!321----
@@ -66,7 +66,7 @@ def shape(r):
           +!1------
 
     Another example, where r=4:
-    ++++!4321
+1111++++!4321 13
      +++!321-
       ++!21--
        +!1---
@@ -74,8 +74,21 @@ def shape(r):
     Preconditions:  r is a positive number.
     For purposes of "lining up", assume r is a single digit.
     """
+    n=0
+    for k in range(r):
+        for f in range(4+n):
+            print(' ',end='')
+        for j in range(r-k):
+            print('+',end='')
+        print('!',end='')
+        for s in range(n,r,1):
+            print(r-s,end='')
+        for d in range(n):
+            print('-',end='')
+        n += 1
+        print()
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Some tests are already written for you (above).
     #
     ####################################################################
