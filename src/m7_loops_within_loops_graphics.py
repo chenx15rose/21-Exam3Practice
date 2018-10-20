@@ -5,9 +5,9 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
-
+         their colleagues and Harry Chen.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
+import math
 ########################################################################
 # Students:
 #
@@ -88,8 +88,30 @@ def hourglass(window, n, point, radius, color):
     where n and radius are positive and color is a string that denotes
     a color that rosegraphics understands.
     """
+    for k in range(n):
+        x = point.x
+        yup = point.y
+        ydo = point.y
+        x -= k * radius
+        yup -= math.sqrt(3) * k * radius
+        ydo += math.sqrt(3) * k * radius
+        for j in range(k+1):
+            circleup = rg.Circle(rg.Point(x,yup),radius)
+            circledo = rg.Circle(rg.Point(x,ydo),radius)
+            circleup.fill_color = color
+            circledo.fill_color = color
+            circleup.attach_to(window)
+            circledo.attach_to(window)
+            lineup = rg.Line(rg.Point(x-radius,yup),rg.Point(x+radius,yup))
+            linedo = rg.Line(rg.Point(x-radius,ydo),rg.Point(x+radius,ydo))
+            lineup.attach_to(window)
+            linedo.attach_to(window)
+            window.render()
+            x+=2*radius
+
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -162,8 +184,20 @@ def many_hourglasses(window, square, m, colors):
     where m is positive and colors is a sequence of strings,
     each of which denotes a color that rosegraphics understands.
     """
+    index = 0
+    radius = square.length_of_each_side * (1 / 2)
+    for s in range(m):
+        center = rg.Point(square.center.x+radius*((s+1)**2-1),square.center.y)
+        if index == len(colors):
+            index =0
+        hourglass(window, s+1, center, radius, colors[index])
+        index +=1
+        rec = rg.Rectangle(rg.Point(center.x+(s+1)*radius,center.y-radius*(math.sqrt(3)*s+1)),rg.Point(center.x-(s+1)*radius,center.y+radius*(math.sqrt(3)*s+1)))
+        rec.attach_to(window)#why if no render, the last won't be on window but others do???
+    window.render()
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
